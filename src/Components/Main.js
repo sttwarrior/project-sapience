@@ -1,7 +1,8 @@
 import React from "react";
-import './Main.css';
-import PlannerHub from './PlannerHub';
+import '../styles/Main.css';
+import PlannerHub from '../containers/PlannerHub';
 import MyTasks from './MyTasks';
+import NewPlanOverlay from './NewPlanOverlay';
 import Menu from './Menu.js';
 import { Row } from 'react-bootstrap';
 import {
@@ -9,23 +10,40 @@ import {
     Switch,
     Route,
     Link,
-    Redirect
+    Redirect,
+    HashRouter
 } from "react-router-dom";
+import { navs } from "../configs"
 
 class Main extends React.Component{
 
+    constructor(props){
+        super(props)
+        this.state = {
+            newPlanOverlay: false
+        }
+    }
+
+    toggleNewPlanOverlay = () => {
+
+        this.setState({
+            newPlanOverlay: !this.state.newPlanOverlay
+        })
+    }
+
     render(){
 
-        //Delete this one later 
-        const menuList = [{title: "New plan", id:1}, {title: "Planner hub", id:2}, {title: "My tasks", id:3}]
         return(
-            <Row fluid="true" className="Main">
-                <Menu menuList={menuList} />
-                <BrowserRouter>
-                    <Route exact path="/" render={() => <Redirect to="/PlannerHub"/>} />
-                    <Route exact path="/PlannerHub" component={PlannerHub} />
-                    <Route exact path="/MyTasks" component={MyTasks} />
-                </BrowserRouter>
+            <Row fluid="true" className="Main mx-auto">
+                <NewPlanOverlay activated={this.state.newPlanOverlay} toggleNewPlanOverlay={this.toggleNewPlanOverlay} />
+                <Menu toggleNewPlanOverlay={this.toggleNewPlanOverlay} />
+                <Switch>
+                    <Route path={navs.plannerHub.url} component={PlannerHub} />
+                    {/* <Route path={`${navs.plannerHub.url}/:pid`} component={MyTasks}/> */}
+                    <Route exact path={navs.myTasks.url} component={MyTasks} />
+                    <Route exact path="/" render={() => <Redirect to={navs.plannerHub.url} />} />
+                    {/* <Redirect from="*" to='/' /> */}
+                </Switch>
             </Row>
         )
     }  

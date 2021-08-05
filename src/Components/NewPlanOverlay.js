@@ -8,6 +8,9 @@ import {
   Button, 
   InputGroup 
 } from 'react-bootstrap';
+import history from "../configs/history"
+import { addNewPlan } from '../actions'
+import store from "../reducers/store"
 
 class NewPlanOverlay extends React.Component{
 
@@ -20,18 +23,29 @@ class NewPlanOverlay extends React.Component{
   }
 
   handleSubmit(e) {
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.preventDefault();
-      e.stopPropagation();
+    e.preventDefault()
+    const form = e.target.elements
+    const formPlanTitle = form.formPlanTitle.value
+    const formPlanPrivacy = form.formPlanPrivacy.value
+    const planObj = {
+      title: formPlanTitle,
+      privacy: formPlanPrivacy,
     }
+ 
+    // if (form.checkValidity() === false) {
+    //   e.preventDefault();
+    //   e.stopPropagation();
+    // }
+    // this.setState({validateed:true});
 
-    this.setState({validateed:true});
+    form.formPlanTitle.value = ""
+    this.props.toggleNewPlanOverlay()
+    store.dispatch(addNewPlan(planObj))
   };
   
   render() {
     return (
-      <div className={`${this.props.activated?"":"invisible"}`} >
+      <div className={`${this.props.activated?"": "d-none" }`} >
         <Form
           noValidate
           className="overlay-content p-4"
@@ -40,16 +54,19 @@ class NewPlanOverlay extends React.Component{
         >
           <Row className="mb-4">
             <Col fluid>
-              New Plan
+              <span>New Plan</span>
             </Col>
-            <Col md="1" onClick={this.props.toggleNewPlanOverlay}>
-              [X]
+            <Col md="1">
+              <button type="button" className="close pb-1" aria-label="Close" onClick={this.props.toggleNewPlanOverlay}>
+                <span aria-hidden="true">&times;</span>
+              </button>
             </Col>
           </Row>
           <Row>
             <Form.Group as={Col} fluid controlId="validationCustom02">
               <Form.Label>Plan Name</Form.Label>
               <Form.Control
+                name="formPlanTitle"
                 required
                 type="text"
                 placeholder="Plan Name"
@@ -58,26 +75,30 @@ class NewPlanOverlay extends React.Component{
             </Form.Group>
           </Row>
           <Row className="mb-3">
-              <Form.Group as={Col} md="12" controlId="validationCustom05">
+            <Form.Group as={Col} md="12" controlId="validationCustom05">
               <Form.Label>Privacy</Form.Label>
               <Form.Check 
                 type="radio"
-                name="radio-privacy"
+                name="formPlanPrivacy"
+                value="Public"
                 id="default-radio"
                 label="Public - Anyone in my organization can see plan contents"
               />
               <Form.Check 
                 type="radio"
-                name="radio-privacy"
+                name="formPlanPrivacy"
+                value="Privacy"
                 id="default-radio"
                 label="Private - Only members I add can see plan contents"
               />
               <Form.Control.Feedback type="invalid">
-                Please provide a valid zip.
+                Please fill out required information.
               </Form.Control.Feedback>
             </Form.Group>
           </Row>
-          <Button type="submit">Submit form</Button>
+          <Button type="submit">
+            Create New Plan
+          </Button>
         </Form>
         <div
           className="overlay"

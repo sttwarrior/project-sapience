@@ -1,11 +1,25 @@
+import planModule from "./planModule"
 import taskModule from "./taskModule"
+
+export const apiUpdatePlanList = (planList) => {
+  sessionStorage.setItem("planList", JSON.stringify(planList))
+}
 
 export const apiFetchPlanList = () => {
   return JSON.parse(sessionStorage.planList)
 }
 
-export const apiUpdatePlanList = (planList) => {
-  sessionStorage.setItem("planList", JSON.stringify(planList))
+export const apiAddNewPlan = (planObj) => {
+  const planList = apiFetchPlanList()
+  planList.push(planModule(planObj))
+  apiUpdatePlanList(planList)
+}
+
+export const apiDeletePlan = (pid) => {
+  const planList = apiFetchPlanList()
+  const planIndex = planList.findIndex((plan)=> plan.pid === pid)
+  planList.splice(planIndex, 1)
+  apiUpdatePlanList(planList)
 }
 
 export const apiFetchPlanInfo = (pidQuery) => {

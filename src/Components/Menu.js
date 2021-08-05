@@ -1,38 +1,56 @@
 import React from "react";
-import './Menu.css';
+import '../styles/Menu.css';
+import { navs } from "../configs"
+import { Link } from "react-router-dom";
 import { Row, Col, Image } from 'react-bootstrap';
+import history from '../configs/history'
 
 class Menu extends React.Component{
 
     constructor(props){
         super(props)
         this.state = {
-            expanded: true
+            expanded: false
         }
-        this.expand_menu = this.expand_menu.bind(this)
+        this.expandMenu = this.expandMenu.bind(this)
     }
 
-    expand_menu() {
+    expandMenu() {
 
         this.setState({
             expanded: !this.state.expanded
         })
     }
 
+    genMenuList = () => {
+        const navKeys = Object.keys(navs)
+        // const history = createBrowserHistory()
+        const menuList = navKeys.map( (navKey, idx) => {
+            const callback = () => navs[navKey].url ? history.push(navs[navKey].url) : this.props.toggleNewPlanOverlay()
+            return(
+                <Row className="px-3 py-2 mx-0 navs" key={idx} onClick={callback}>
+                    <i className={`${navs[navKey].icon} px-1`} />
+                    {this.state.expanded && 
+                        <span className="mx-2">{navs[navKey].label}</span>}
+                </Row>
+            )
+        })
+
+        return menuList
+    }
+
     render(){
         return(
-            <Col className="Menu" md={this.state.expanded ? 2 : 1}>
-                <Row onClick={this.expand_menu}>
-                    [Icon]
+            <Col className="mr-4 border-right menu bg-light" md="fluid">
+                <Row className="px-3 py-2 mx-0 border-bottom" onClick={this.expandMenu}>
+                    {this.state.expanded
+                        ? <i class="bi bi-arrow-bar-left" />
+                        : <i class="bi bi-arrow-bar-right" />
+                    }
                 </Row>
-                {this.props.menuList.map( (item, idx) => {
-                    return(
-                        <Row key={idx}>
-                            <Image />
-                            {item.title}
-                        </Row>
-                    )
-                })}
+                <div className="mt-3">
+                    {this.genMenuList()}
+                </div>
             </Col>
         )
     }  

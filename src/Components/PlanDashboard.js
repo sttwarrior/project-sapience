@@ -14,12 +14,27 @@ export const PlanDashboard = (props) => {
             <Row fluid="true">
                 {props.planList.map( (plan, idx) => {
                     return(
-                        <Col md="3 pl-0">
+                        <Col sm="6" md="4" lg="3" className="pl-0">
                             <Card key={idx} onClick={()=>{
                                 history.push(`${navs.plannerHub.url}?pid=${plan.pid}`)
                             }}>
-                                <Card.Header>{plan.title}</Card.Header>
-                                {/* <Card.Img variant="left" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/259px-How_to_use_icon.svg.png" /> */}
+                                <Card.Header>
+                                    <Row>
+                                        <Col fluid>
+                                            <i className="bi-app mr-3" />
+                                            {plan.title}
+                                        </Col>
+                                        <Col md="1" onClick={
+                                            (e)=> {
+                                                e.stopPropagation()
+                                                props.deletePlan(plan.pid)
+                                        }}>
+                                            <button type="button" className="close" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>                                       
+                                        </Col>
+                                    </Row>
+                                </Card.Header>
                                 <Card.Body>
                                     <Card.Text>
                                     Project Details here

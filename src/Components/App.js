@@ -1,23 +1,28 @@
 import Header from './Header';
 import Main from './Main';
 import { Container } from 'react-bootstrap';
-import './App.css';
+import '../styles/App.css';
 import { useEffect } from 'react';
+import history from '../configs/history'
+import { Router } from "react-router-dom";
+
 
 function App() {
 
   useEffect(() => {
     if(!sessionStorage.getItem("planList")) {
-      const {planList} = require("../Configs/testData")
+      const {planList} = require("../configs/testData")
       sessionStorage.setItem("planList", JSON.stringify(planList))
     }
   })
 
   return (
-    <Container className="App" fluid>
-      <Header />
-      <Main />
-    </Container>
+      <Router history={history}>
+        <Container className="App px-0" fluid>
+          <Header />
+          <Main />
+        </Container>
+      </Router>
   );
 }
 

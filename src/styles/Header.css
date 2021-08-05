@@ -1,7 +1,8 @@
-.Header-nav {
-  background-color: #003262;
-  /* font-size: 15px; */
-  font-weight: 400;
-  height: 60px;
-  color: white;
+.header>a:hover * {
+  color: rgb(238, 238, 238); 
+}
+
+.header i:hover {
+  cursor: pointer;
+  color: rgb(238, 238, 238); 
 }

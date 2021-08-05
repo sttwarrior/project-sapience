@@ -11,7 +11,9 @@ const PlanTask = (props) => {
                 <Card.Title className="h6">
                     {props.taskTitle}
                     <span style={{float:"right"}} onClick={()=>props.deleteTask(props.tid)}>
-                        [x]
+                        <button type="button" className="close" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </span>
                 </Card.Title>
                 <Card.Text>

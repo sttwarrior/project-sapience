@@ -1,7 +1,7 @@
 import React from "react";
-// import './Main.css';
 import PlanTask from "./PlanTask"
 import { Row, Col, Card } from "react-bootstrap";
+import "../styles/planTaskBoard.css";
 
 class PlanTaskBoard extends React.Component{
 
@@ -27,12 +27,10 @@ class PlanTaskBoard extends React.Component{
 
         return(
             <Col>
-                <Row className="pt-3 mb-3" fluid="true">
+                <Row className="pt-3 mb-3 taskHeader" fluid="true">
                     <Col md="auto">
-                        [planIcon]
-                    </Col>
-                    <Col>
-                        {this.props.planInfo.title}
+                        <i class="bi-app mr-3" />
+                        <span>{this.props.planInfo.title}</span>
                     </Col>
                 </Row>
                 <Row fluid="true">
@@ -40,9 +38,10 @@ class PlanTaskBoard extends React.Component{
                         return(
                             <Col md="3">
                                 {bucketTitle}
-                                <div onClick={() => this.props.addNewTask({
-                                    bucket: bucketTitle,
-                                    taskTitle: "New Task"
+                                <div
+                                    onClick={() => this.props.addNewTask({
+                                        bucket: bucketTitle,
+                                        taskTitle: "New Task"
                                 })}
                                     >[+]
                                 </div>

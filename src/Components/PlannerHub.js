@@ -1,49 +1,36 @@
 import React from "react";
 // import './Main.css';
+import { PlanDashboard } from "./PlanDashboard";
+import PlanTaskBoard from "../containers/PlanTaskBoard"
+import history from '../configs/history'
 import { Row, Col, Card } from "react-bootstrap";
+import {
+    Route,
+} from "react-router-dom";
+import MyTasks from "./MyTasks";
+
 
 class PlannerHub extends React.Component{
 
     constructor(props){
         super(props)
-        this.state = {
-            planList: [],
-            pid: null
-        }
     }
 
     componentDidMount() {
-        this.setState({planList: JSON.parse(sessionStorage.planList)})
+        this.props.fetchPlanList()
     }
 
     render(){
 
-        //Delete this one later 
-
+        const pid = new URLSearchParams(this.props?.location?.search).get("pid")
+        const isDashboard = !pid
+        
         return(
-            this.state.pid ? 
-                `${this.state.pid}` :
-                <Col>
-                    <Row fluid="true">
-                        Welcome, "Pass the name here"!
-                    </Row>
-                    <Row fluid="true">
-                        {this.state.planList.map( (item, idx) => {
-                            return(
-                                <Card key={idx} style={{ width: '33%' }} onClick={()=>{this.setState({pid: item.pid})}}>
-                                    <Card.Header>{`Project: ${item.title}`}</Card.Header>
-                                    <Card.Img variant="left" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/How_to_use_icon.svg/259px-How_to_use_icon.svg.png" />
-                                    <Card.Body>
-                                        <Card.Text>
-                                        Some quick example text to build on the card title and make up the bulk of
-                                        the card's content.
-                                        </Card.Text>
-                                    </Card.Body>
-                                </Card>
-                            )}
-                        )}
-                    </Row>
-                </Col>
+            isDashboard ? (
+                <PlanDashboard planList={this.props.planList} deletePlan={this.props.deletePlan} />
+            ) : (
+                <PlanTaskBoard pid={pid} />
+            )
         )
     }  
 }
