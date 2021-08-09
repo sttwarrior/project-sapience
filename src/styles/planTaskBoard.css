@@ -1,7 +1,39 @@
-.taskHeader {
+.task-header {
   font-size: 1.5rem;
 }
 
-.taskHeader i {
+.task-header i {
   font-size: 1.3rem;
+}
+
+.bucket input {
+  height: 1.5rem;
+  padding: 0.5rem 0.75rem
+}
+
+.bucketTitle input {
+  height: 1.5rem;
+  padding: 0.5rem 0.75rem
+}
+
+div:hover.bucketTitle  {
+  cursor: pointer;
+}
+
+.addNewTask:hover {
+  cursor: pointer;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.addNewTask {
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.addNewTask i {
+  vertical-align: 0.15rem;
+  font-size: 0.6rem;
+}
+
+.task-body {
+  height: -webkit-calc(100vh - (50px));
 }

@@ -22,22 +22,18 @@ export const apiDeletePlan = (pid) => {
   apiUpdatePlanList(planList)
 }
 
-export const apiFetchPlanInfo = (pidQuery) => {
+export const apiFetchPlanInfo = (pid) => {
 
   const planList = apiFetchPlanList()
-  let planInfo = {}
+  const planIndex = planList.findIndex((plan)=> plan.pid === pid)
 
-  for (let plan of planList) {
-    if(pidQuery === plan.pid) {
-        planInfo = {...plan}
-    }
-  }
-  return planInfo
+  return planList[planIndex]
 }
 
 export const apiAddNewTask = (taskObj, pid) => {
   const planList = apiFetchPlanList()
   const planIndex = planList.findIndex((plan)=> plan.pid === pid)
+  console.log(taskObj, pid)
   planList[planIndex].tasks.push(taskModule(taskObj))
   apiUpdatePlanList(planList)
 }
@@ -48,4 +44,26 @@ export const apiDeleteTask = (pid, tid)  => {
   const taskIndex = planList[planIndex].tasks.findIndex((task)=> task.tid === tid)
   planList[planIndex].tasks.splice(taskIndex, 1)
   apiUpdatePlanList(planList)
+}
+
+export const apiUpdateBucketTitle = (pid, bucketIdx, newBucketTitle) => {
+  const planList = apiFetchPlanList()
+  const planIndex = planList.findIndex((plan)=> plan.pid === pid)
+  const tarPlan = planList[planIndex]
+  for (let task of tarPlan.tasks) {
+    if(task.bucket === tarPlan.buckets[bucketIdx]) {
+      task.bucket = newBucketTitle
+    }
+  }
+  tarPlan.buckets[bucketIdx] = newBucketTitle
+  apiUpdatePlanList(planList) 
+}
+
+export const apiAddNewBucket = (pid, newBucketTitle) => {
+  const planList = apiFetchPlanList()
+  const planIndex = planList.findIndex((plan)=> plan.pid === pid)
+  const tarPlan = planList[planIndex]
+  
+  tarPlan.buckets.push(newBucketTitle)
+  apiUpdatePlanList(planList) 
 }

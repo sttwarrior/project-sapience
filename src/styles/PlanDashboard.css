@@ -1,0 +1,7 @@
+.planCard .card-header {
+  font-size: 1.1rem;
+}
+
+.planCard :hover {
+  cursor: pointer;
+}

@@ -1,6 +1,6 @@
 const tidGenerator = () => (Math.random() + 1).toString(36).substring(7)
 
-export default (task) => ({
+const taskModule = (task) => ({
     bucket: task?.bucket || "",
     tid: tidGenerator(),
     taskTitle: task?.taskTitle || "",
@@ -11,3 +11,5 @@ export default (task) => ({
     dueDate: task?.dueDate || "",   //Date Obj && Not earlier than 
     checklist: task?.checklist || [], // Array of { Strings, Completed(Bool) } 
 });
+
+export default taskModule

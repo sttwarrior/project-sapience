@@ -1,14 +1,11 @@
 import React from "react";
 import '../styles/NewPlanOverlay.css';
 import {  
-  Container,
   Row,
   Col, 
   Form, 
   Button, 
-  InputGroup 
 } from 'react-bootstrap';
-import history from "../configs/history"
 import { addNewPlan } from '../actions'
 import store from "../reducers/store"
 
@@ -52,7 +49,7 @@ class NewPlanOverlay extends React.Component{
           validated={this.state.validated}
           onSubmit={this.handleSubmit}
         >
-          <Row className="mb-4">
+          <Row className="py-2 mb-3 border-bottom">
             <Col fluid>
               <span>New Plan</span>
             </Col>
@@ -96,7 +93,7 @@ class NewPlanOverlay extends React.Component{
               </Form.Control.Feedback>
             </Form.Group>
           </Row>
-          <Button type="submit">
+          <Button type="submit" className="btn-block">
             Create New Plan
           </Button>
         </Form>

@@ -6,12 +6,9 @@ import NewPlanOverlay from './NewPlanOverlay';
 import Menu from './Menu.js';
 import { Row } from 'react-bootstrap';
 import {
-    BrowserRouter,
     Switch,
     Route,
-    Link,
     Redirect,
-    HashRouter
 } from "react-router-dom";
 import { navs } from "../configs"
 

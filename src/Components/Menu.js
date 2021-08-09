@@ -1,8 +1,7 @@
 import React from "react";
 import '../styles/Menu.css';
 import { navs } from "../configs"
-import { Link } from "react-router-dom";
-import { Row, Col, Image } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import history from '../configs/history'
 
 class Menu extends React.Component{
@@ -10,7 +9,7 @@ class Menu extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            expanded: false
+            expanded: true
         }
         this.expandMenu = this.expandMenu.bind(this)
     }
@@ -44,8 +43,8 @@ class Menu extends React.Component{
             <Col className="mr-4 border-right menu bg-light" md="fluid">
                 <Row className="px-3 py-2 mx-0 border-bottom" onClick={this.expandMenu}>
                     {this.state.expanded
-                        ? <i class="bi bi-arrow-bar-left" />
-                        : <i class="bi bi-arrow-bar-right" />
+                        ? <i className="bi bi-arrow-bar-left" />
+                        : <i className="bi bi-arrow-bar-right" />
                     }
                 </Row>
                 <div className="mt-3">

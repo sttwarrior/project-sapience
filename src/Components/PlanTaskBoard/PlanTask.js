@@ -1,13 +1,12 @@
 import React from "react";
-import history from '../configs/history'
-import { Row, Col, Card } from "react-bootstrap";
-import "../styles/PlanTask.css";
+import { Card } from "react-bootstrap";
+import "../../styles/PlanTask.css";
 
 const PlanTask = (props) => {
 
     return(
-        <Card bg="Light" className="PlanTaskCard">
-            <Card.Body>
+        <Card bg="Light" className="mb-2 planTask">
+            <Card.Body className="p-3">
                 <Card.Title className="h6">
                     {props.taskTitle}
                     <span style={{float:"right"}} onClick={()=>props.deleteTask(props.tid)}>

@@ -1,3 +1,4 @@
-.PlanTaskCard .card-body {
-  padding: 0.5rem
+.planTask {
+  box-shadow: 
+    0 3px 5px 0 rgba(0, 0, 0, 0.1);
 }

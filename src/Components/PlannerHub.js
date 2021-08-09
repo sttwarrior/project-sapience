@@ -2,19 +2,9 @@ import React from "react";
 // import './Main.css';
 import { PlanDashboard } from "./PlanDashboard";
 import PlanTaskBoard from "../containers/PlanTaskBoard"
-import history from '../configs/history'
-import { Row, Col, Card } from "react-bootstrap";
-import {
-    Route,
-} from "react-router-dom";
-import MyTasks from "./MyTasks";
 
 
 class PlannerHub extends React.Component{
-
-    constructor(props){
-        super(props)
-    }
 
     componentDidMount() {
         this.props.fetchPlanList()

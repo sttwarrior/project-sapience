@@ -1,5 +1,5 @@
 import React from "react";
-// import './Main.css';
+import '../styles/PlanDashboard.css';
 import history from '../configs/history'
 import { navs } from "../configs"
 import { Row, Col, Card } from "react-bootstrap";
@@ -15,8 +15,11 @@ export const PlanDashboard = (props) => {
                 {props.planList.map( (plan, idx) => {
                     return(
                         <Col sm="6" md="4" lg="3" className="pl-0">
-                            <Card key={idx} onClick={()=>{
-                                history.push(`${navs.plannerHub.url}?pid=${plan.pid}`)
+                            <Card 
+                                key={idx}
+                                className="planCard mb-3" 
+                                onClick={()=>{
+                                    history.push(`${navs.plannerHub.url}?pid=${plan.pid}`)
                             }}>
                                 <Card.Header>
                                     <Row>

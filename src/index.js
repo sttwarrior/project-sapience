@@ -5,12 +5,8 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import rootReducer from './reducers'
 import store from "./reducers/store"
-
-// const store = createStore(rootReducer)
 
 ReactDOM.render(
   <React.StrictMode>
