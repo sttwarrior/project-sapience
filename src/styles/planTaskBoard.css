@@ -1,8 +1,8 @@
-.task-header {
+.plan-header {
   font-size: 1.5rem;
 }
 
-.task-header i {
+.plan-header i {
   font-size: 1.3rem;
 }
 
@@ -34,6 +34,6 @@ div:hover.bucketTitle  {
   font-size: 0.6rem;
 }
 
-.task-body {
+.plan-body {
   height: -webkit-calc(100vh - (50px));
 }

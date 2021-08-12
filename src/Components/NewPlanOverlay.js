@@ -42,7 +42,7 @@ class NewPlanOverlay extends React.Component{
   
   render() {
     return (
-      <div className={`${this.props.activated?"": "d-none" }`} >
+      <div className={`overlay ${this.props.activated?"": "d-none" }`} >
         <Form
           noValidate
           className="overlay-content p-4"

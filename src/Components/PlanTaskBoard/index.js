@@ -111,13 +111,13 @@ class PlanTaskBoard extends React.Component{
 
         return(
             <Col>
-                <Row className="pt-3 mb-3 task-header" fluid="true">
+                <Row className="pt-3 mb-3 plan-header" fluid="true">
                     <Col md="auto">
                         <i className="bi-app mr-3" />
                         <span>{this.props.planInfo.title}</span>
                     </Col>
                 </Row>
-                <Row className="flex-nowrap overflow-auto task-body">
+                <Row className="flex-nowrap overflow-auto plan-body">
                     {buckets.map((bucketTitle, idx) => {                        
                         return(
                             <Col className="bucket" key={`bucket-${idx}`} md="3">
