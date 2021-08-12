@@ -7,9 +7,9 @@ class MyTasks extends React.Component{
     render(){
         
         return(
-            <Col>
-                <Row fluid="true">
-                    <h6> My Tasks </h6>
+            <Col className="my-tasks">
+                <Row className="pt-3 mb-3" fluid="true">
+                    Your tasks:
                 </Row>
             </Col>
         )

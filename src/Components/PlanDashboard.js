@@ -7,7 +7,7 @@ import { Row, Col, Card } from "react-bootstrap";
 export const PlanDashboard = (props) => {
 
     return(
-        <Col>
+        <Col className="plan-dashboard">
             <Row className="pt-3 mb-3" fluid="true">
                 Welcome, Name!
             </Row>

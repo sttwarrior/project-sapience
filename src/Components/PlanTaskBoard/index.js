@@ -3,7 +3,7 @@ import BucketTitle from "./BucketTitle"
 import PlanTask from "./PlanTask"
 import AddNewTask from "./AddNewTask"
 import AddNewBucket from "./AddNewBucket"
-import { Row, Col, Card, Form, Button } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import "../../styles/PlanTaskBoard.css";
 
 class PlanTaskBoard extends React.Component{
